@@ -26,15 +26,9 @@ def integer_input(message: str, max: int) -> int:
 
 
 class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
     OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
     ENDC = '\033[0m'
     BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
 
 
 @dataclass
@@ -131,8 +125,8 @@ class Character:
 
 
 class OpponentFlow:
+    """At this stage of development user can choose only from a pre-defined limited set of opponents"""
     def __init__(self, char):
-        """At this stage of development user can choose only from a pre-defined limited set of opponents"""
         self.chosen_opponent = None
         self.opponents_dict = self.get_available_opponents()
 
@@ -306,7 +300,7 @@ class Fight:
             print(f'The battle is over. Draw.')
         else:
             winner = self.char1 if self.char2.hp_left == 0 else self.char2
-            print(f'The battle is over. The winner is {winner.name}.')
+            print(f'{bcolors.OKGREEN}The battle is over. The winner is {winner.name}.{bcolors.ENDC}')
             return winner
 
     @staticmethod
